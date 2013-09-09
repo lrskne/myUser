@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  #before_filter only:edit, update, destroy set_name
-  #lbelater - why are these all called as symbols?? Question for class?
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+
   def index
    @users = User.all
   end
@@ -17,25 +16,23 @@ class UsersController < ApplicationController
   end
 
   def create
-    # when I only had new, this automagically displays the create.html.erb
-    # problem is you do not need one. The rails generate controller, put it there
-    # for you
-    # old way: @user = User.new(params[:user])
-
+    # old rails 3 way: @user = User.new(params[:user])
     @user = User.new(user_params)
     if @user.save
-        flash.notice = "User saved"
-        redirect_to @user
+        #can pass flash within the redirect or do this: flash.notice = "User saved"
+        #as shown below in the update action. The use of flash.notice, notice is
+        #lowercase and it matters!
+        redirect_to @user, notice: "User saved"
     else
-        render action: "new"
+        render action: "new", alert: "User not saved!"
     end
   end
 
   def update
     if @user.update(user_params)
-      flash.notice = "User updated."
-      #lbelater: also correct might be user_url(@user)
+      #lbenote: could also: redirect_to user_url(@user)
       # (either way rails knows to go to the show template)
+      flash.notice = "User updated."
       redirect_to @user
     else
       render action: 'edit'
@@ -52,7 +49,7 @@ class UsersController < ApplicationController
   def set_user
       @user = User.find(params[:id])
   end
-# lbelater - here again, why symbols?, where did :user come from?
+
   def user_params
       params.require(:user).permit(:first_name, :last_name, :phone, :email)
   end

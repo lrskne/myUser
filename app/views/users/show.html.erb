@@ -1,4 +1,10 @@
-<h1>Showing User</h1>
+<h1>Showing User: <%= @user.last_name %></h1>
+<% flash.each do |key, value| %>
+  <em>
+    <%= key %>:
+    <%= value %>
+  </em>
+<% end %>
 <table>
   <tr>
     <td>First Name</td>
@@ -16,5 +22,6 @@
     <td><%= @user.email %></td>
   </tr>
 </table>
+</br>
 <%= link_to "Back", users_path %>
 
