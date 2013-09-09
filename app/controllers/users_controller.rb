@@ -43,7 +43,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    #lbelater - likely need, one-step-at-a-time :)
     @user.destroy
     redirect_to users_url
   end
@@ -55,7 +54,7 @@ class UsersController < ApplicationController
   end
 # lbelater - here again, why symbols?, where did :user come from?
   def user_params
-      params.require(:user).permit(:first_name, :last_name)
+      params.require(:user).permit(:first_name, :last_name, :phone, :email)
   end
 
 end

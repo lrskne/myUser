@@ -1,12 +1,2 @@
-<!-- lbelater - work on edit & new templates sharing _form partial -->
 <h1>Edit User</h1>
-<p>For now first name and last name and VERY undry<p>
-<%= form_for @user do |f| %>
-  <%= f.label :first_name %>:
-  <%= f.text_field :first_name %><br />
-  <%= f.label :last_name %>:
-  <%= f.text_field :last_name %><br />
-
-  <%= f.submit %>
-
-<% end %>
+<%= render "form" %>

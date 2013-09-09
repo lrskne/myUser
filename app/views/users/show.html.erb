@@ -1,6 +1,20 @@
-<h1>Showing one user</h1>
-<%= @user.first_name %>
-<%= @user.last_name %>
-</br>
-</br>
+<h1>Showing User</h1>
+<table>
+  <tr>
+    <td>First Name</td>
+    <td><%= @user.first_name %></td>
+  <tr>
+    <td>Last Name</td>
+    <td><%= @user.last_name %></td>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td><%= @user.phone %></td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td><%= @user.email %></td>
+  </tr>
+</table>
 <%= link_to "Back", users_path %>
+
